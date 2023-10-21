@@ -2,7 +2,7 @@
 # Cyber Defense Techniques, Fall 2023
 # Team Bravo
 import psutil
-
+import time
 bad_programs = ['wireshark','cmd','vim','terminal','bash','cmd']
 def check_if_process_running(process_name,kill = False):
     '''
@@ -25,6 +25,7 @@ def check_if_process_running(process_name,kill = False):
 
 def kill_bad_programs():
     while True:
+        time.sleep(60)
         try:
             for program in bad_programs:
                 print(check_if_process_running(program,True))
